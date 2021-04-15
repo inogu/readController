@@ -5,7 +5,7 @@ function MainHeader() {
   return (
     <S.HeaderBooks>
       <S.Logo>
-        <Link href="/">NextEvents</Link>
+        <Link href="/">Controlador de leitura</Link>
       </S.Logo>
     </S.HeaderBooks>
   );

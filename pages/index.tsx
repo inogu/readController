@@ -1,25 +1,25 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
+import * as S from '../styles/styled';
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <S.Container>
       <Head>
         <title>Controlador de leituras</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>Bem-vindo ao Controlador de leitura!</h1>
+      <main>
+        <S.Title>Bem-vindo ao Controlador de leitura!</S.Title>
 
-        <div className={styles.grid}>
-          <a href="/books" className={styles.card}>
+        <div>
+          <a href="/books">
             <h3>Livros &rarr;</h3>
             <p>Visualize a sua lista de leituras</p>
           </a>
 
         </div>
       </main>
-    </div>
+    </S.Container>
   );
 }
