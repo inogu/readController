@@ -20,7 +20,9 @@ export const Logo = styled.div`
   display: flex;
   padding: 5px 0;
   text-align: center;
-  margin-left: 10em;
+  margin-left: 13em;
+  border: solid 3px;
+  border-radius: 8px;
 `;
 
 export const Container = styled.div`
