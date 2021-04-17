@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "components/book-form", "components/ui/input/input.js", "components/ui/button/button.js"  ],
+, "components/book-form", "components/ui/button/button.js"  ],
   "exclude": [
     "node_modules"
   ]

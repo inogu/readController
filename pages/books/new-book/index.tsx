@@ -1,11 +1,22 @@
-import { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
 import ImageBooks from '../../../components/layout/ImageBooks';
-import Input from '../../../components/ui/input/input';
-import TextArea from '../../../components/ui/textArea/textArea';
+import { TextField } from '@material-ui/core';
 import { IBook } from '../../../types/Books';
 import * as S from '../../../styles/styled';
 import Button from '../../../components/ui/button/button';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      '& .MuiTextField-root': {
+        margin: theme.spacing(1),
+        width: '40ch',
+      },
+    },
+  }),
+);
 
 async function sendBookData(bookDetails: IBook) {
   console.log('Entrou no sendBookData');
@@ -33,6 +44,8 @@ function NewBookPage() {
   const [enteredNumeroPaginas, setEnteredNumeroPaginas] = useState(0);
   const [requestStatus, setRequestStatus] = useState('');
   const [requestError, setRequestError] = useState();
+
+  const styles = useStyles();
 
   useEffect(() => {
     if (requestStatus === 'success' || requestStatus === 'error') {
@@ -82,85 +95,61 @@ function NewBookPage() {
         <meta name="description" content="Insira novo livro!" />
       </Head>
       <S.Container>
-        <form onSubmit={insertBook}>
-          <S.Title>Insira um novo livro!</S.Title>
-          <div>
-            <S.Label>NOME</S.Label>
-          </div>
-          <div>
-            <Input
+        <form className={styles.root} onSubmit={insertBook}>
+          <S.Title>Novo livro</S.Title>
+          <S.Row>
+            <TextField
+              label="Nome"
               type="text"
               id="nome"
               value={enteredNome}
               onChange={(event) => setEnteredNome(event.target.value)}
-              size="1em"
             />
-          </div>
-          <br />
-          <div>
-            <S.Label>AUTOR</S.Label>
-          </div>
-          <div>
-            <Input
+            <TextField
+              label="Autor"
               type="text"
               id="autor"
               value={enteredAutor}
               onChange={(event) => setEnteredAutor(event.target.value)}
-              size="1em"
             />
-          </div>
-          <div>
-            <S.Label>GENERO</S.Label>
-          </div>
-          <div>
-            <Input
+            <TextField
+              label="Gênero"
               type="text"
               id="genero"
               value={enteredGenero}
               onChange={(event) => setEnteredGenero(event.target.value)}
-              size="1em"
             />
-          </div>
-          <div>
-            <S.Label>AVALIAÇÃO</S.Label>
-          </div>
-          <div>
-            <TextArea
-              type="text"
-              id="genero"
-              value={enteredAvaliacao}
-              onChange={(event) => setEnteredAvaliacao(event.target.value)}
-              size="1em"
-            />
-          </div>
-          <div>
-            <S.Label>DATA DA LEITURA</S.Label>
-          </div>
-          <div>
-            <Input
+          </S.Row>
+          <S.Row>
+            <TextField
+              label="Data da leitura"
               type="date"
               id="dataLeitura"
               value={enteredDataLeitura}
               onChange={(event) => setEnteredDataLeitura(event.target.value)}
-              size="1em"
+              InputLabelProps={{ shrink: true }}
             />
-          </div>
-          <div>
-            <S.Label>NÚMERO DE PÁGINAS</S.Label>
-          </div>
-          <div>
-            <Input
+            <TextField
+              label="Número de páginas"
               type="number"
               id="numeroPaginas"
               value={enteredNumeroPaginas}
-              onChange={(event) => setEnteredNumeroPaginas(event.target.value)}
-              size="1em"
+              onChange={(event) =>
+                setEnteredNumeroPaginas(parseInt(event.currentTarget.value))
+              }
             />
-          </div>
+            <TextField
+              label="Avaliação"
+              type="text"
+              id="avaliacao"
+              value={enteredAvaliacao}
+              onChange={(event) => setEnteredAvaliacao(event.target.value)}
+            />
+          </S.Row>
           <br />
-          <div>
+          <S.Footer>
             <Button>Inserir</Button>
-          </div>
+          </S.Footer>
         </form>
       </S.Container>
     </Fragment>

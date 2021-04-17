@@ -5,15 +5,22 @@ import * as S from '../../styles/styled';
 
 function HomePage(props) {
   return (
-    <div>
+    <S.Container>
       <S.Title>Livros lidos</S.Title>
       <BookList items={props.books} />
-      <div>
+
+      <S.Grid>
+        <S.Card />
+        <S.Card />
+        <S.Card />
+        <S.Card />
+      </S.Grid>
+      <S.Footer>
         <Button primary link={'/books/new-book'}>
           INSERIR NOVO LIVRO
         </Button>
-      </div>
-    </div>
+      </S.Footer>
+    </S.Container>
   );
 }
 

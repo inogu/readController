@@ -10,15 +10,16 @@ export default function Home() {
       </Head>
 
       <main>
-        <S.Title>Bem-vindo ao Controlador de leitura!</S.Title>
+        <S.Title>Bem-vindo ao Controlador de leituras!</S.Title>
 
-        <div>
-          <a href="/books">
-            <h3>Livros &rarr;</h3>
-            <p>Visualize a sua lista de leituras</p>
-          </a>
-
-        </div>
+        <S.Grid>
+          <S.Card>
+            <a href="/books">
+              <h3>Livros &rarr;</h3>
+              <p>Visualize a sua lista de leituras</p>
+            </a>
+          </S.Card>
+        </S.Grid>
       </main>
     </S.Container>
   );
