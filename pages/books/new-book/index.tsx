@@ -1,11 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Head from 'next/head';
-import ImageBooks from '../../../components/layout/ImageBooks';
 import { TextField } from '@material-ui/core';
 import { IBook } from '../../../types/Books';
 import * as S from '../../../styles/styled';
 import Button from '../../../components/ui/button/button';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { sendBookData } from '../service/books.service';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -17,23 +17,6 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   }),
 );
-
-async function sendBookData(bookDetails: IBook) {
-  console.log('Entrou no sendBookData');
-  const response = await fetch('/api/books', {
-    method: 'POST',
-    body: JSON.stringify(bookDetails),
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data.message || 'Something went wrong!');
-  }
-}
 
 function NewBookPage() {
   const [enteredNome, setEnteredNome] = useState('');
@@ -63,10 +46,9 @@ function NewBookPage() {
 
     setRequestStatus('pending');
 
-    console.log('Entrou no insert book');
-
     try {
       await sendBookData({
+        _id: 0,
         nome: enteredNome,
         autor: enteredAutor,
         genero: enteredGenero,

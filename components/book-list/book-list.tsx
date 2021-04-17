@@ -6,14 +6,12 @@ function BookList(props) {
 
   return (
     <ul className={styles.list}>
-      {items.map((event) => (
+      {items.map((book) => (
         <BookItem
-          key={event.id}
-          id={event.id}
-          title={event.title}
-          location={event.location}
-          date={event.date}
-          image={event.image}
+          key={book.id}
+          id={book._id}
+          nome={book.nome}
+          dataLeitura={book.dataLeitura}
         />
       ))}
     </ul>

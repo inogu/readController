@@ -1,20 +1,26 @@
+import { useEffect, useState } from 'react';
 import BookList from '../../components/book-list/book-list';
-import styled from 'styled-components';
 import Button from '../../components/ui/button/button';
 import * as S from '../../styles/styled';
+import { getAllBooks } from './service/books.service';
 
 function HomePage(props) {
+  const [books, setBooks] = useState([]);
+  const [loadedData, setLoadedData] = useState(false);
+
+  useEffect(() => {
+    const buscarLivros = async () => {
+      const response = await getAllBooks();
+      setBooks(response);
+      setLoadedData(true);
+    };
+    if (!loadedData) buscarLivros();
+  }, [loadedData]);
+
   return (
     <S.Container>
       <S.Title>Livros lidos</S.Title>
-      <BookList items={props.books} />
-
-      <S.Grid>
-        <S.Card />
-        <S.Card />
-        <S.Card />
-        <S.Card />
-      </S.Grid>
+      <BookList items={books} />
       <S.Footer>
         <Button primary link={'/books/new-book'}>
           INSERIR NOVO LIVRO
@@ -22,17 +28,6 @@ function HomePage(props) {
       </S.Footer>
     </S.Container>
   );
-}
-
-export async function getStaticProps() {
-  const books = [];
-
-  return {
-    props: {
-      books: books,
-    },
-    revalidate: 1800,
-  };
 }
 
 export default HomePage;
