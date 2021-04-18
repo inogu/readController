@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BookList from '../../components/book-list/book-list';
 import Button from '../../components/ui/button/button';
 import * as S from '../../styles/styled';
+import { IBook } from '../../types/Books';
 import { getAllBooks } from './service/books.service';
 
 function HomePage(props) {
@@ -11,8 +12,14 @@ function HomePage(props) {
   useEffect(() => {
     const buscarLivros = async () => {
       const response = await getAllBooks();
-      setBooks(response);
-      setLoadedData(true);
+      if (response) {
+        const books: IBook[] = response.map((book) => ({
+          ...book,
+          id: book._id,
+        }));
+        setBooks(books);
+        setLoadedData(true);
+      }
     };
     if (!loadedData) buscarLivros();
   }, [loadedData]);

@@ -1,21 +1,44 @@
-import BookItem from '../book-item/book-item';
-import styles from './book-list.module.css';
+import { createMuiTheme } from '@material-ui/core';
+import {
+  DataGrid,
+  ptBR,
+  GridValueFormatterParams,
+  GridColDef,
+} from '@material-ui/data-grid';
+import { ThemeProvider } from '@material-ui/styles';
 
-function BookList(props) {
+const theme = createMuiTheme(
+  {
+    palette: {
+      primary: { main: '#1976d2' },
+    },
+  },
+  ptBR,
+);
+
+const columns: GridColDef[] = [
+  { field: 'foto', headerName: 'Imagem', width: 300 },
+  { field: 'nome', headerName: 'Nome', width: 200 },
+  { field: 'autor', headerName: 'Autor', width: 200 },
+  { field: 'genero', headerName: 'Genero', width: 150 },
+  { field: 'numeroPaginas', headerName: 'Páginas', width: 150 },
+];
+
+const BookList = (props) => {
   const { items } = props;
 
   return (
-    <ul className={styles.list}>
-      {items.map((book) => (
-        <BookItem
-          key={book.id}
-          id={book._id}
-          nome={book.nome}
-          dataLeitura={book.dataLeitura}
+    <div style={{ height: 400, width: '100%' }}>
+      <ThemeProvider theme={theme}>
+        <DataGrid
+          rows={items}
+          columns={columns}
+          pageSize={5}
+          checkboxSelection
         />
-      ))}
-    </ul>
+      </ThemeProvider>
+    </div>
   );
-}
+};
 
 export default BookList;
