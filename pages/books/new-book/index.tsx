@@ -6,6 +6,8 @@ import * as S from '../../../styles/styled';
 import Button from '../../../components/ui/button/button';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { sendBookData } from '../service/books.service';
+import { useAlert } from 'react-alert';
+import { useRouter } from 'next/router';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -28,6 +30,10 @@ function NewBookPage() {
   const [requestStatus, setRequestStatus] = useState('');
   const [requestError, setRequestError] = useState();
 
+  const alert = useAlert();
+
+  const router = useRouter();
+
   const styles = useStyles();
 
   useEffect(() => {
@@ -48,7 +54,7 @@ function NewBookPage() {
 
     try {
       await sendBookData({
-        _id: 0,
+        _id: undefined,
         nome: enteredNome,
         autor: enteredAutor,
         genero: enteredGenero,
@@ -58,12 +64,14 @@ function NewBookPage() {
         numeroPaginas: enteredNumeroPaginas,
       });
       setRequestStatus('success');
+      alert.show('Livro inserido com sucesso!');
       setEnteredNome('');
       setEnteredAutor('');
       setEnteredGenero('');
       setEnteredAvaliacao('');
       setEnteredDataLeitura('');
       setEnteredNumeroPaginas(0);
+      router.push('/books');
     } catch (error) {
       setRequestError(error.message);
       setRequestStatus('error');

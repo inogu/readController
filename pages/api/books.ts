@@ -25,7 +25,7 @@ async function handler(req, res) {
       book._id = result.insertedId;
       res.status(201).json({ message: 'Livro inserido', book: book });
     } catch (error) {
-      res.status(500).json({ message: 'Falha na inserção do livro!' });
+      res.status(500).json({ message: `Falha na inserção do livro! ${error}` });
     }
 
     res.status(201).json({ message: 'Livro inserido com sucesso!' });
