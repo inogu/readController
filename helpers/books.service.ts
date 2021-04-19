@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IBook } from '../../../types/Books';
+import { IBook } from '../types/Books';
 
 const urlBooks = axios.create({
   baseURL: `/api/books`,

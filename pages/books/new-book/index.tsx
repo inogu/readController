@@ -5,7 +5,7 @@ import { IBook } from '../../../types/Books';
 import * as S from '../../../styles/styled';
 import Button from '../../../components/ui/button/button';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import { sendBookData } from '../service/books.service';
+import { sendBookData } from '../../../helpers/books.service';
 import { useAlert } from 'react-alert';
 import { useRouter } from 'next/router';
 

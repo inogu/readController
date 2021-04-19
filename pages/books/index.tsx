@@ -3,7 +3,7 @@ import BookList from '../../components/book-list/book-list';
 import Button from '../../components/ui/button/button';
 import * as S from '../../styles/styled';
 import { IBook } from '../../types/Books';
-import { getAllBooks } from './service/books.service';
+import { getAllBooks } from '../../helpers/books.service';
 
 function HomePage(props) {
   const [books, setBooks] = useState([]);
