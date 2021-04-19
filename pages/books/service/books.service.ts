@@ -6,7 +6,7 @@ const urlBooks = axios.create({
 });
 
 export const sendBookData = async (bookDetails: IBook) => {
-  const response = await urlBooks.post('', JSON.stringify(bookDetails));
+  const response = await urlBooks.post('', bookDetails);
 
   const data = await response.data;
 
