@@ -17,7 +17,6 @@ const theme = createMuiTheme(
 );
 
 const columns: GridColDef[] = [
-  { field: 'foto', headerName: 'Imagem', width: 300 },
   { field: 'nome', headerName: 'Nome', width: 200 },
   { field: 'autor', headerName: 'Autor', width: 200 },
   { field: 'genero', headerName: 'Genero', width: 150 },
