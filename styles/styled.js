@@ -1,8 +1,7 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const HeaderBooks = styled.header`
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
   padding: 1rem 10%;
   margin-right: 2rem
@@ -13,14 +12,13 @@ export const HeaderBooks = styled.header`
 `;
 
 export const Logo = styled.div`
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   color: white;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   height: 100%;
   display: flex;
   padding: 5px 0;
-  text-align: center;
-  margin-left: 13em;
+  margin: auto;
   border: solid 3px;
   border-radius: 8px;
 `;

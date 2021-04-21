@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import Link from 'next/link';
+import styled from "styled-components";
+import Link from "next/link";
 
 const StyledLink = styled.a`
   text-decoration: none;
@@ -10,7 +10,7 @@ const StyledLink = styled.a`
   &:link,
   &:active {
     text-decoration: none;
-    color: var(--color-grey-200);
+    color: #f0ffff;
   }
 `;
 
