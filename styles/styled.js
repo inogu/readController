@@ -28,6 +28,22 @@ export const Container = styled.div`
   height: 700px;
 `;
 
+export const FormContainer = styled.div`
+  background-color: #ddd;
+  height: 700px;
+  margin: auto;
+  width: 20%;
+`;
+
+export const SubTitle = styled.h2`
+  font-size: 2em;
+  color: #4e0909;
+  font-family: Roboto;
+  font-weight: 400;
+  margin-bottom: auto;
+  text-align: center;
+`;
+
 export const Title = styled.h1`
   font-size: 2.5em;
   color: #4e0909;
