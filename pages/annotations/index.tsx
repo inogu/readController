@@ -4,25 +4,50 @@ import Button from "../../components/ui/button/button";
 import * as S from "../../styles/styled";
 import { IAnnotation } from "../../types/Annotations";
 import { getAllAnnotations } from "../../helpers/annotations.service";
+import { getAllBooks } from "../../helpers/books.service";
+import { IBook } from "../../types/Books";
 
 function HomePage(props) {
   const [annotations, setAnnotations] = useState([]);
+  const [books, setBooks] = useState([]);
   const [loadedData, setLoadedData] = useState(false);
+
+  useEffect(() => {
+    const buscarLivros = async () => {
+      const response = await getAllBooks();
+      if (response) {
+        const books: IBook[] = response.map((book) => ({
+          ...book,
+          id: book._id,
+        }));
+        setBooks(books);
+        debugger;
+        setLoadedData(true);
+      }
+    };
+    if (!loadedData) {
+      buscarLivros();
+    }
+  }, [loadedData]);
 
   useEffect(() => {
     const buscarAnotacoes = async () => {
       const response = await getAllAnnotations();
       if (response) {
+        debugger;
         const annotations: IAnnotation[] = response.map((annotation) => ({
           ...annotation,
           id: annotation._id,
+          nomeLivro: books.find((b) => b._id === annotation.livro_id).nome,
         }));
         setAnnotations(annotations);
         setLoadedData(true);
       }
     };
-    if (!loadedData) buscarAnotacoes();
-  }, [loadedData]);
+    if (books.length > 0) {
+      buscarAnotacoes();
+    }
+  }, [books]);
 
   return (
     <S.Container>

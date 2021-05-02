@@ -1,5 +1,5 @@
 export interface IAnnotation {
   _id: number;
-  nomeLivro: string;
+  livro_id: number;
   anotacao: string;
 }
