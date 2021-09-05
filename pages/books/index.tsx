@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import BookList from '../../components/book-list/book-list';
-import Button from '../../components/ui/button/button';
-import * as S from '../../styles/styled';
-import { IBook } from '../../types/Books';
-import { getAllBooks } from '../../helpers/books.service';
+import { useContext, useEffect, useState } from "react";
+import BookList from "../../components/book-list/book-list";
+import Button from "../../components/ui/button/button";
+import * as S from "../../styles/styled";
+import { IBook } from "../../types/Books";
+import { getAllBooks } from "../../helpers/books.service";
 
 function HomePage(props) {
   const [books, setBooks] = useState([]);
@@ -29,7 +29,7 @@ function HomePage(props) {
       <S.Title>Livros lidos</S.Title>
       <BookList items={books} />
       <S.Footer>
-        <Button primary link={'/books/new-book'}>
+        <Button primary link={"/books/new-book"}>
           INSERIR NOVO LIVRO
         </Button>
       </S.Footer>
